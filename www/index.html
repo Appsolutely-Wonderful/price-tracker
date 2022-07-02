@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
+            https://cordova.apache.org/docs/en/latest/
+        Some notes:
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/material-components-web.min.css">
+        <link rel="stylesheet" href="css/fonts/roboto.css">
+        <link rel="stylesheet" href="css/icons.css">
+        <title>Price Tracker</title>
+    </head>
+    <body>
+        <header class="mdc-top-app-bar">
+            <div class="mdc-top-app-bar__row">
+                <section id='js-title-section' class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                    <!--<button id='js-open-drawer' class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu">menu</button>-->
+                    <span class="mdc-top-app-bar__title">Price Tracker</span>
+                </section>
+                <section id='js-search-section' class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start hidden">
+                    <button id='js-search-back-btn' class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Back">arrow_back</button>
+                    <input id='js-search-txt' type="text" aria-labelledby="my-label-id" placeholder="Search">
+                </section>
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+                    <button id='js-search-btn' class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Search">search</button>
+                </section>
+            </div>
+        </header>
+        <aside id="js-nav" class="mdc-drawer mdc-drawer--modal">
+            <div class="mdc-drawer__content">
+                <nav class="mdc-list">
+                    <a class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
+                        <span class="mdc-list-item__ripple"></span>
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
+                        <span class="mdc-list-item__text">Inbox</span>
+                    </a>
+                    <a class="mdc-list-item" href="#">
+                        <span class="mdc-list-item__ripple"></span>
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                        <span class="mdc-list-item__text">Outgoing</span>
+                    </a>
+                    <a class="mdc-list-item" href="#">
+                        <span class="mdc-list-item__ripple"></span>
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+                        <span class="mdc-list-item__text">Drafts</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+        <div class="mdc-drawer-scrim"></div>
+        <div id="price-tracker" style="display: flex; flex: auto;">
+            <div style="position: absolute; right: 25px; bottom: 25px;" class="mdc-touch-target-wrapper">
+                <button id='js-add-item' class="mdc-fab mdc-fab--touch">
+                    <div class="mdc-fab__ripple"></div>
+                    <span class="material-icons mdc-fab__icon">add</span>
+                    <div class="mdc-fab__touch"></div>
+                </button>
+            </div>
+            <div id='js-add-modal' class="mdc-dialog">
+                <div class="mdc-dialog__container">
+                    <div class="mdc-dialog__surface"
+                    role="alertdialog"
+                    aria-modal="true"
+                    aria-labelledby="my-dialog-title"
+                    aria-describedby="my-dialog-content">
+                    <div class="mdc-dialog__content" id="my-dialog-content">
+                      <h1 style="text-align: left; margin-bottom: 15px; text-transform: capitalize;" >Add new item</h1>
+                        <div>
+                            <label id='js-item-input' class="mdc-text-field mdc-text-field--outlined">
+                                <span class="mdc-notched-outline">
+                                    <span class="mdc-notched-outline__leading"></span>
+                                    <span class="mdc-notched-outline__notch">
+                                    <span class="mdc-floating-label" id="item-label-id">Item</span>
+                                    </span>
+                                    <span class="mdc-notched-outline__trailing"></span>
+                                </span>
+                                <input style="text-transform: initial;" type="text" class="mdc-text-field__input" aria-labelledby="item-label-id">
+                            </label>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <label id='js-price-input' class="mdc-text-field mdc-text-field--outlined">
+                                <span class="mdc-notched-outline">
+                                    <span class="mdc-notched-outline__leading"></span>
+                                    <span class="mdc-notched-outline__notch">
+                                    <span class="mdc-floating-label" id="price-label-id">Price</span>
+                                    </span>
+                                    <span class="mdc-notched-outline__trailing"></span>
+                                </span>
+                                <input style="text-transform: initial;" type="number" class="mdc-text-field__input" aria-labelledby="price-label-id" step=0.01 pattern="[0-9]\.[0-9][0-9]">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mdc-dialog__actions">
+                        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">
+                        <div class="mdc-button__ripple"></div>
+                        <span class="mdc-button__label">Cancel</span>
+                        </button>
+                        <button id="js-submit-item-btn" type="button" class="mdc-button mdc-dialog__button" disabled data-mdc-dialog-action="add">
+                            <div class="mdc-button__ripple"></div>
+                            <span class="mdc-button__label">Add</span>
+                        </button>
+                    </div>
+                    </div>
+                </div>
+                <div class="mdc-dialog__scrim"></div>
+            </div>
+           <ul id="js-item-list" class="mdc-list mdc-list--two-line" style="width: 100%;">
+           </ul>
+        </div>
+        <script src="cordova.js"></script>
+        <script src="js/material-components-web.min.js"></script>
+        <script src="js/price_tracker.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>
