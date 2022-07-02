@@ -33,7 +33,6 @@ export default class ItemList {
             let text = el.getElementsByClassName('mdc-list-item__primary-text')[0].textContent;
             let date = el.getElementsByClassName('mdc-list-item__secondary-text')[0].textContent;
             let price = el.getElementsByClassName('mdc-list-item__meta')[0].textContent;
-            console.log("Result:", text, date, price);
 
             if (searchTerm == "" ||
                 this.textContains(text, searchTerm) ||
@@ -53,7 +52,6 @@ export default class ItemList {
         this.items.sort((a, b) => {
             return a.name > b.name ? 1: -1;
         })
-        console.log(this.items);
     }
 
     getHtmlForItem(item) {
