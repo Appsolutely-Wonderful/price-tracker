@@ -1,4 +1,5 @@
 import Item from '../models/item.js';
+import {LongPress} from './touch_events.js';
 
 export default class ItemList {
     /**
@@ -67,6 +68,21 @@ export default class ItemList {
 <li role="separator" class="mdc-list-divider"></li>`;
     }
 
+    registerTouchListeners() {
+        let elements = document.getElementsByClassName('js-item');
+        var items = this.items;
+        let idx = 0;
+        for (const el of elements) {
+            let itemIndex = idx;
+            if (!el.classList.contains('js-upgraded')) {
+                let longPress = new LongPress(el);
+                longPress.onLongPress(() => {alert(items[itemIndex].name)});
+                el.classList.add('js-upgraded');
+            }
+            idx += 1;
+        }
+    }
+
     render() {
         let listHtml = "";
         this.items.forEach((item) => {
@@ -76,6 +92,7 @@ export default class ItemList {
         //       user supplied text directly into the web page.
         this.htmlTarget.innerHTML = listHtml;
         this.filterItems();
+        this.registerTouchListeners();
     }
 
     /**
