@@ -30,6 +30,13 @@ export default class Search {
                 ui.callback(e.target.value);
             }
         });
+
+        this.backBtn.addEventListener('click', () => {
+            if (ui.callback) {
+                ui.callback("");
+                ui.searchField.value = "";
+            }
+        });
     }
 
     showSearch() {
