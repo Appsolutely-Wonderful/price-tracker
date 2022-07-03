@@ -12,6 +12,15 @@ export default class AddItemForm {
     }
 
     /**
+     * Clears all values from the form.
+     */
+    resetForm() {
+        this.itemInput.value = "";
+        this.priceInput.value = "";
+        this.updateSubmitButton();
+    }
+
+    /**
      * public function to register code to be executed when the
      * form is submitted
      */
@@ -51,6 +60,7 @@ export default class AddItemForm {
         if (this.callback) {
             this.callback(item);
         }
+        this.resetForm();
     }
 
     isValid() {
