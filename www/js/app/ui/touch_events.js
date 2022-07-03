@@ -23,7 +23,7 @@ export class LongPress {
             });
         });
         // TODO: Need a better solution, I foresee performance issues with this.
-        ['mouseup', 'touchend'].forEach((e) => {document.addEventListener(e, () => {
+        ['mouseup', 'touchend', 'scroll'].forEach((e) => {document.addEventListener(e, () => {
                 clearTimeout(timer);
             });
         });
