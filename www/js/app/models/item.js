@@ -2,10 +2,9 @@
  * Encapsulates the information for a price tracked item
  */
 export default class Item {
-    constructor(name, price, date, location, store) {
+    constructor(name, price, date, store) {
         this.name = name;
         this.price = price;
-        this.location = location;
         this.store = store;
         if (!date) {
             this.initDate();

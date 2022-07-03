@@ -2,8 +2,8 @@ import Item from '../models/item.js';
 import {initTextFieldById} from '../material/material.js';
 
 export default class AddItemForm {
-    constructor(itemInputId, priceInputId, submitBtnId) {
-        this.initializeTextFields(itemInputId, priceInputId);
+    constructor(itemInputId, priceInputId, storeInputId, submitBtnId) {
+        this.initializeTextFields(itemInputId, priceInputId, storeInputId);
         // Initialize the submit button
         this.submitBtn = document.getElementById(submitBtnId);
 
@@ -26,9 +26,10 @@ export default class AddItemForm {
         });
     }
 
-    initializeTextFields(itemInputSelector, priceInputSelector) {
+    initializeTextFields(itemInputSelector, priceInputSelector, storeInputId) {
         this.itemInput = initTextFieldById(itemInputSelector);
         this.priceInput = initTextFieldById(priceInputSelector);
+        this.storeInput = initTextFieldById(storeInputId);
         // Since price input is a number field, need to enable native validation
         // to let the browser prevent the user from typing letters into it.
         this.priceInput.useNativeValidation = true;
@@ -38,7 +39,7 @@ export default class AddItemForm {
         let form = this;
         // For each item in the list, add an input listener
         // to check if the submit button should be enabled/disabled
-        [this.itemInput.input, this.priceInput.input].forEach((el) => {
+        [this.itemInput.input, this.priceInput.input, this.storeInput.input].forEach((el) => {
             el.addEventListener('input', () => {
                 form.updateSubmitButton();
             });
@@ -46,14 +47,14 @@ export default class AddItemForm {
     }
 
     _onSubmit() {
-        let item = new Item(this.itemInput.value, this.priceInput.value);
+        let item = new Item(this.itemInput.value, this.priceInput.value, null, this.storeInput.value);
         if (this.callback) {
             this.callback(item);
         }
     }
 
     isValid() {
-        return this.hasPrice() && this.hasItem();
+        return this.hasPrice() && this.hasItem() && this.hasStore();
     }
 
     /**
@@ -63,11 +64,20 @@ export default class AddItemForm {
         this.submitBtn.disabled = !this.isValid();
     }
 
+    hasValue(value) {
+        console.log("Value is: ", value);
+        return value.trim() != "";
+    }
+
     hasPrice() {
-        return this.priceInput.value.trim() != "";
+        return this.hasValue(this.priceInput.value);
     }
 
     hasItem() {
-        return this.itemInput.value.trim() != "";
+        return this.hasValue(this.itemInput.value);
+    }
+
+    hasStore() {
+        return this.hasValue(this.storeInput.value);
     }
 }

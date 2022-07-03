@@ -14,6 +14,7 @@ let addItemDialog = new AddItemDialog('js-add-modal',
                                       'js-add-item');
 let addItemForm = new AddItemForm('js-item-input',
                                   'js-price-input',
+                                  'js-store-input',
                                   'js-submit-item-btn');
 addItemForm.onSubmit((item) => {
     itemList.add(item);

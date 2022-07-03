@@ -60,7 +60,7 @@ export default class ItemList {
     <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">
       <span class="mdc-list-item__primary-text">`+ item.name +`</span>
-      <span class="mdc-list-item__secondary-text">`+ item.date +`</span>
+      <span class="mdc-list-item__secondary-text">`+ item.date +`|` + item.store + `</span>
     </span>
 
     <span class="mdc-list-item__meta">$` + item.price + `</span>
