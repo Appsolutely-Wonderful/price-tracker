@@ -8,7 +8,6 @@ export default class LongPressDialog {
     constructor(dialogId, editId, deleteId) {
         this.dialog = initDialogById(dialogId);
         this.registerListeners(editId, deleteId);
-        this.dialog.open();
     }
 
     registerListeners(editId, deleteId) {
