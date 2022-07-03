@@ -135,6 +135,30 @@
             </div>
            <ul id="js-item-list" class="mdc-list mdc-list--two-line" style="width: 100%;">
            </ul>
+           <div id='js-long-press-dialog' class="mdc-dialog">
+              <div class="mdc-dialog__container">
+                <div class="mdc-dialog__surface"
+                  role="alertdialog"
+                  aria-modal="true"
+                  aria-labelledby="my-dialog-title"
+                  aria-describedby="my-dialog-content">
+                  <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+                 -->Item Options<!--
+               --></h2>
+                  <div class="mdc-dialog__content" id="my-dialog-content">
+                    <ul class="mdc-list">
+                      <li id='js-edit-item' class="mdc-list-item" tabindex="0" data-mdc-dialog-action="Edit">
+                        <span class="mdc-list-item__text">Edit</span>
+                      </li>
+                      <li id='js-delete-item' class="mdc-list-item" data-mdc-dialog-action="Delete">
+                        <span class="mdc-list-item__text">Delete</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="mdc-dialog__scrim"></div>
+           </div>
         </div>
         <script src="cordova.js"></script>
         <script src="js/material-components-web.min.js"></script>

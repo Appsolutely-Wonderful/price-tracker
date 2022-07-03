@@ -116,6 +116,16 @@ ul.mdc-list {
 li.mdc-list-item {
     padding-top: 10px;
     padding-bottom: 10px;
+    background: rgba(255, 255, 255, 1);
+    transition: background 0.25s;
+}
+
+#js-long-press-dialog li.mdc-list-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+#js-long-press-dialog li.mdc-list-item:active {
+  background: rgba(0, 0, 0, 0.08);
 }
 
 li.mdc-list-item span.mdc-list-item__meta {
@@ -146,3 +156,4 @@ li.mdc-list-item span.mdc-list-item__meta {
 #js-search-section {
     width: 100%;
 }
+
