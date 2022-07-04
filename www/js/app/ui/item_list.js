@@ -56,11 +56,16 @@ export default class ItemList {
     }
 
     getHtmlForItem(item) {
+        // Set store text if store is available
+        let store = "";
+        if (item.store) {
+            store = " | " + item.store;
+        }
         return `<li class="mdc-list-item js-item">
     <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">
       <span class="mdc-list-item__primary-text">`+ item.name +`</span>
-      <span class="mdc-list-item__secondary-text">`+ item.date +`|` + item.store + `</span>
+      <span class="mdc-list-item__secondary-text">`+ item.date + store + `</span>
     </span>
 
     <span class="mdc-list-item__meta">$` + item.price + `</span>
