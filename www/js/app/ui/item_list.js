@@ -68,15 +68,43 @@ export default class ItemList {
 <li role="separator" class="mdc-list-divider"></li>`;
     }
 
+    /**
+     * Sets callback to be executed when an item is long pressed
+     * parameters to the callback are (itemIndex, itemObject)
+     */
+    onLongPress(callback) {
+        this.longPressCb = callback;
+    }
+
+    /**
+     * Stores the item that was long pressed and executes the
+     * callback
+     */
+    _onLongPress(idx) {
+        this.selectedItemIndex = idx;
+        if (this.longPressCb) {
+            this.longPressCb(idx, this.items[idx]);
+        }
+    }
+
+    /**
+     * Removes the item at the specified index
+     */
+    removeAt(index) {
+        this.items.splice(index, 1);
+        this.render();
+    }
+
     registerTouchListeners() {
         let elements = document.getElementsByClassName('js-item');
-        var items = this.items;
+        let items = this.items;
+        let itemList = this;
         let idx = 0;
         for (const el of elements) {
             let itemIndex = idx;
             if (!el.classList.contains('js-upgraded')) {
                 let longPress = new LongPress(el);
-                longPress.onLongPress(() => {alert(items[itemIndex].name)});
+                longPress.onLongPress(() => itemList._onLongPress(itemIndex));
                 el.classList.add('js-upgraded');
             }
             idx += 1;

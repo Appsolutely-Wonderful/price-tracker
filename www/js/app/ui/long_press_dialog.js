@@ -19,8 +19,8 @@ export default class LongPressDialog {
         });
 
         document.getElementById(deleteId).addEventListener('click', () => {
-            if (dialog.onDelete) {
-                dialog.onDelete(dialog.data);
+            if (dialog.deleteCallback) {
+                dialog.deleteCallback(dialog.data);
             }
         });
     }
