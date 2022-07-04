@@ -146,6 +146,68 @@
                 </div>
                 <div class="mdc-dialog__scrim"></div>
             </div>
+            <div id='js-edit-modal' class="mdc-dialog">
+                <div class="mdc-dialog__container">
+                    <div class="mdc-dialog__surface"
+                    role="alertdialog"
+                    aria-modal="true"
+                    aria-labelledby="my-dialog-title"
+                    aria-describedby="my-dialog-content">
+                    <div class="mdc-dialog__content" id="my-dialog-content">
+                      <h1 style="text-align: left; margin-bottom: 15px; text-transform: capitalize;" >Editing <span id='js-edit-title'></span></h1>
+                        <div>
+                            <label id='js-item-edit-input' class="mdc-text-field mdc-text-field--outlined">
+                                <span class="mdc-notched-outline">
+                                    <span class="mdc-notched-outline__leading"></span>
+                                    <span class="mdc-notched-outline__notch">
+                                    <span class="mdc-floating-label" id="item-edit-label-id">Item</span>
+                                    </span>
+                                    <span class="mdc-notched-outline__trailing"></span>
+                                </span>
+                                <input style="text-transform: initial;" type="text" class="mdc-text-field__input" aria-labelledby="item-edit-label-id">
+                            </label>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <label id='js-price-edit-input' class="mdc-text-field mdc-text-field--outlined">
+                                <span class="mdc-notched-outline">
+                                    <span class="mdc-notched-outline__leading"></span>
+                                    <span class="mdc-notched-outline__notch">
+                                    <span class="mdc-floating-label" id="price-edit-label-id">Price</span>
+                                    </span>
+                                    <span class="mdc-notched-outline__trailing"></span>
+                                </span>
+                                <input style="text-transform: initial;" type="number" class="mdc-text-field__input" aria-labelledby="price-edit-label-id" step=0.01 pattern="[0-9]\.[0-9][0-9]">
+                            </label>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <label id='js-store-edit-input' class="mdc-text-field mdc-text-field--outlined">
+                                <span class="mdc-notched-outline">
+                                    <span class="mdc-notched-outline__leading"></span>
+                                    <span class="mdc-notched-outline__notch">
+                                    <span class="mdc-floating-label" id="store-edit-label-id">Store</span>
+                                    </span>
+                                    <span class="mdc-notched-outline__trailing"></span>
+                                </span>
+                                <input style="text-transform: initial;" type="text" class="mdc-text-field__input" aria-labelledby="store-edit-label-id">
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class="mdc-dialog__actions">
+                        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">
+                        <div class="mdc-button__ripple"></div>
+                           <span class="mdc-button__label">Cancel</span>
+                           </button>
+                           <button id="js-submit-edit-btn" type="button" class="mdc-button mdc-dialog__button" disabled data-mdc-dialog-action="update">
+                               <div class="mdc-button__ripple"></div>
+                               <span class="mdc-button__label">Update</span>
+                           </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdc-dialog__scrim"></div>
+            </div>
+
            <ul id="js-item-list" class="mdc-list mdc-list--two-line" style="width: 100%;">
            </ul>
            <div id='js-long-press-dialog' class="mdc-dialog">

@@ -55,8 +55,15 @@ export default class AddItemForm {
         });
     }
 
+    /**
+     * Returns the item constructed from this form's input fields
+     */
+    getItem() {
+        return new Item(this.itemInput.value, this.priceInput.value, null, this.storeInput.value);
+    }
+
     _onSubmit() {
-        let item = new Item(this.itemInput.value, this.priceInput.value, null, this.storeInput.value);
+        let item = this.getItem();
         if (this.callback) {
             this.callback(item);
         }

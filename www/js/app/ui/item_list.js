@@ -100,6 +100,16 @@ export default class ItemList {
         this.render();
     }
 
+    /**
+     * Replaces the item at the specified index, this store any
+     * new tracking information. For tracking, use updateAt. This
+     * should be used for fixing typos
+     */
+    replaceAt(index, item) {
+        this.items.splice(index, 1, item);
+        this.render();
+    }
+
     registerTouchListeners() {
         let elements = document.getElementsByClassName('js-item');
         let items = this.items;
